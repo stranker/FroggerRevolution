@@ -8,8 +8,11 @@ public class Frog : MonoBehaviour {
     public float cameraHeight;
     public float cameraWidth;
     public float positionOffset = 0.5f;
+    private Vector2 initialPosition;
+
 	// Use this for initialization
 	void Start () {
+        initialPosition = transform.position;
         cameraHeight = Camera.main.orthographicSize;
         cameraWidth = Mathf.FloorToInt(Camera.main.aspect * cameraHeight);
     }
@@ -31,14 +34,6 @@ public class Frog : MonoBehaviour {
         {
             position.x = -cameraWidth + positionOffset;
         }
-        if (transform.position.y > cameraHeight - positionOffset)
-        {
-            position.y = cameraHeight - positionOffset;
-        }
-        else if (transform.position.y < -cameraHeight + positionOffset)
-        {
-            position.y = -cameraHeight + positionOffset;
-        }
         transform.position = position;
     }
 
@@ -56,13 +51,17 @@ public class Frog : MonoBehaviour {
         else if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             movement.x += walkDistance;
-            Debug.Log(cameraWidth);
         }
         else if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            Debug.Log(cameraWidth);
             movement.x -= walkDistance;
         }
         transform.position += movement;
     }
+
+    public void Die()
+    {
+        transform.position = initialPosition;
+    }
+
 }
