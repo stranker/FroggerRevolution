@@ -1,27 +1,21 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Vehicle : MonoBehaviour {
+public class Platform : MonoBehaviour {
 
     public float speed;
-    public float direction;
+    public int direction;
     private float cameraWidth;
+
 
     private void Start()
     {
         cameraWidth = Mathf.FloorToInt(Camera.main.aspect * Camera.main.orthographicSize);
-        if (direction == 1)
-        {
-            GetComponent<SpriteRenderer>().flipX = true;
-        }
     }
 
-    // Update is called once per frame
-    void FixedUpdate () {
+    private void FixedUpdate()
+    {
         Movement();
-	}
+    }
 
     private void Update()
     {
@@ -49,21 +43,8 @@ public class Vehicle : MonoBehaviour {
     private void Movement()
     {
         Vector2 velocity = Vector2.zero;
-        velocity.x = direction * speed * Time.deltaTime;
+        velocity.x = speed * direction * Time.deltaTime;
         GetComponent<Rigidbody2D>().velocity = velocity;
-    }
-
-    public void SetDirection(int dir)
-    {
-        direction = dir;
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.tag == "Frog")
-        {
-            collision.GetComponent<Frog>().Hit();
-        }
     }
 
 }

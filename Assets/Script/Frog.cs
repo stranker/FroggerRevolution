@@ -3,23 +3,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Frog : MonoBehaviour {
+public class Frog : MonoBehaviour
+{
     public int walkDistance = 1;
-    public float cameraHeight;
-    public float cameraWidth;
-    public float positionOffset = 0.5f;
+    private float cameraHeight;
+    private float cameraWidth;
+    private float positionOffset = 0.5f;
     private Vector2 initialPosition;
+    public GameObject waterPlatform;
+    private WaterDetect detector;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         initialPosition = transform.position;
         cameraHeight = Camera.main.orthographicSize;
         cameraWidth = Mathf.FloorToInt(Camera.main.aspect * cameraHeight);
+        detector = GameObject.Find("WaterDetect").GetComponent<WaterDetect>();
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    private void Update()
+    {
         Movement();
+        HitControl();
         CheckOOB();
     }
 
@@ -56,12 +62,42 @@ public class Frog : MonoBehaviour {
         {
             movement.x -= walkDistance;
         }
-        transform.position += movement;
+        if (movement.x != 0 || movement.y != 0)
+        {
+            transform.parent = null;
+        }
+        GetComponent<Rigidbody2D>().MovePosition(transform.position + movement);
     }
 
-    public void Die()
+    public void HitControl()
+    {
+        if (detector.onWater && !detector.onPlatform)
+        {
+            Hit();
+        }
+    }
+
+    public void Hit()
     {
         transform.position = initialPosition;
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Platform")
+        {
+            waterPlatform = collision.gameObject;
+            transform.parent = waterPlatform.transform;
+            transform.position = waterPlatform.transform.position;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "Platform")
+        {
+            waterPlatform = null;
+            transform.parent = null;
+        }
+    }
 }
