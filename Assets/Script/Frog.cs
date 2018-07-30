@@ -49,23 +49,22 @@ public class Frog : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             movement.y += walkDistance;
+            transform.parent = null;
         }
         else if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             movement.y -= walkDistance;
+            transform.parent = null;
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             movement.x += walkDistance;
+
         }
         else if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             movement.x -= walkDistance;
-        }
-        if (movement.x != 0 || movement.y != 0)
-        {
-            transform.parent = null;
-        }
+        } 
         GetComponent<Rigidbody2D>().MovePosition(transform.position + movement);
     }
 
@@ -88,7 +87,6 @@ public class Frog : MonoBehaviour
         {
             waterPlatform = collision.gameObject;
             transform.parent = waterPlatform.transform;
-            transform.position = waterPlatform.transform.position;
         }
     }
 
