@@ -2,19 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VehicleSpawner : MonoBehaviour {
+public class ObjectSpawner : MonoBehaviour {
 
-    public List<GameObject> vehicles;
-    public GameObject choosenVehicle;
+    public List<GameObject> objects;
+    public GameObject choosenObject;
     public int vehicleDirection;
     public float spawnTime;
     private float timer;
 
 	// Use this for initialization
 	void Start () {
-		if(!choosenVehicle && vehicles.Count > 0)
+		if(!choosenObject && objects.Count > 0)
         {
-            choosenVehicle = vehicles[UnityEngine.Random.Range(0,vehicles.Count)];
+            choosenObject = objects[UnityEngine.Random.Range(0, objects.Count)];
         }
 	}
 	
@@ -30,10 +30,10 @@ public class VehicleSpawner : MonoBehaviour {
 
     private void SpawnVehicle()
     {
-        if (choosenVehicle)
+        if (choosenObject)
         {
-            GameObject vehicle = Instantiate(choosenVehicle, transform.position, transform.rotation);
-            vehicle.GetComponent<Vehicle>().SetDirection(vehicleDirection);
+            GameObject obj = Instantiate(choosenObject, transform.position, transform.rotation);
+            obj.GetComponent<Vehicle>().SetDirection(vehicleDirection);
         }
     }
 }

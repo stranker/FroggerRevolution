@@ -60,10 +60,9 @@ public class Vehicle : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Frog")
+        if (collision.tag == "Frog" && gameObject.tag != "Platform")
         {
             collision.GetComponent<Frog>().Hit();
         }
     }
-
 }

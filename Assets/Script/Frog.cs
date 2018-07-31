@@ -9,7 +9,7 @@ public class Frog : MonoBehaviour
     private float cameraHeight;
     private float cameraWidth;
     private float positionOffset = 0.5f;
-    private Vector2 initialPosition;
+    private Vector3 initialPosition;
     public GameObject waterPlatform;
     private WaterDetect detector;
 
@@ -17,6 +17,7 @@ public class Frog : MonoBehaviour
     void Start()
     {
         initialPosition = transform.position;
+        initialPosition.z = -4;
         cameraHeight = Camera.main.orthographicSize;
         cameraWidth = Mathf.FloorToInt(Camera.main.aspect * cameraHeight);
         detector = GameObject.Find("WaterDetect").GetComponent<WaterDetect>();
@@ -25,8 +26,8 @@ public class Frog : MonoBehaviour
     private void Update()
     {
         Movement();
-        HitControl();
         CheckOOB();
+        HitControl();
     }
 
     private void CheckOOB()
@@ -49,23 +50,20 @@ public class Frog : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             movement.y += walkDistance;
-            transform.parent = null;
         }
         else if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             movement.y -= walkDistance;
-            transform.parent = null;
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             movement.x += walkDistance;
-
         }
         else if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             movement.x -= walkDistance;
-        } 
-        GetComponent<Rigidbody2D>().MovePosition(transform.position + movement);
+        }
+        transform.position = transform.position + movement;
     }
 
     public void HitControl()

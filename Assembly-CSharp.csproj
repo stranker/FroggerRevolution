@@ -63,11 +63,10 @@
     <Compile Include="Assets\Script\CreditsScene.cs" />
     <Compile Include="Assets\Script\Frog.cs" />
     <Compile Include="Assets\Script\MainMenu.cs" />
-    <Compile Include="Assets\Script\Platform.cs" />
+    <Compile Include="Assets\Script\ObjectSpawner.cs" />
     <Compile Include="Assets\Script\ResultsScene.cs" />
     <Compile Include="Assets\Script\UIManager.cs" />
     <Compile Include="Assets\Script\Vehicle.cs" />
-    <Compile Include="Assets\Script\VehicleSpawner.cs" />
     <Compile Include="Assets\Script\WaterDetect.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Users/Daniel/Desktop/Proyectos/Godot/FroggerRevolution/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
