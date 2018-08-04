@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4837740258724856}
   - component: {fileID: 114991102677517328}
   m_Layer: 0
-  m_Name: VehicleSpawner
+  m_Name: ObjectSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -51,10 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fc5cb0786669f14d865a14e4e498435, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vehicles:
-  - {fileID: 1324961283471032, guid: 9b008979e8ab73049b8c0ca59ad05660, type: 2}
-  - {fileID: 1419294991765588, guid: ac8b1e85d87dd68428913f55843aec50, type: 2}
-  - {fileID: 1479843085976186, guid: 5d4963ba0e534c446a0bc470cbb27f0b, type: 2}
-  choosenVehicle: {fileID: 0}
+  objects: []
+  choosenObject: {fileID: 0}
   vehicleDirection: -1
   spawnTime: 4

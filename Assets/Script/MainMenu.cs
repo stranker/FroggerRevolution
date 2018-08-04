@@ -7,17 +7,15 @@ public class MainMenu : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+        if (GameManager.Get())
+        {
+            Destroy(GameManager.Get().gameObject);
+        }
 	}
 
     public void OnPlayButton()
     {
-        SceneManager.LoadScene("GameLoopScene");
+        SceneManager.LoadScene("Level1");
     }
 
     public void OnCreditsButton()

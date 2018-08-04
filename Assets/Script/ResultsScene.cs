@@ -17,20 +17,22 @@ public class ResultsScene : MonoBehaviour {
 
     private void Start()
     {
-        //if (!GameManager.Get().IsGameOver())
-        //{
-        //  nextButton.SetActive(true);
-        //  
-        //}
-        //else
-        //{
-        //  menuButton.SetActive(true);
-        //}
+        if (!GameManager.Get().gameOver)
+        {
+            nextButton.SetActive(true);
+            result.text = "LEVEL COMPLETED";
+        }
+        else
+        {
+            result.text = "GAME OVER!";
+            menuButton.SetActive(true);
+        }
     }
 
     public void OnContinueButton()
     {
-        SceneManager.LoadScene("Level"); // LEVEL + GM.level
+        string nextLevel = "Level" + GameManager.Get().currentLevel.ToString();
+        SceneManager.LoadScene(nextLevel);
     }
 
 	public void OnMenuButton()

@@ -61,7 +61,10 @@
   <ItemGroup>
     <Compile Include="Assets\Script\CameraControl.cs" />
     <Compile Include="Assets\Script\CreditsScene.cs" />
+    <Compile Include="Assets\Script\FinalSpot.cs" />
     <Compile Include="Assets\Script\Frog.cs" />
+    <Compile Include="Assets\Script\GameManager.cs" />
+    <Compile Include="Assets\Script\LevelManager.cs" />
     <Compile Include="Assets\Script\MainMenu.cs" />
     <Compile Include="Assets\Script\ObjectSpawner.cs" />
     <Compile Include="Assets\Script\ResultsScene.cs" />

@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class Frog : MonoBehaviour
 {
-    public int walkDistance = 1;
+    private const int walkDistance = 1;
+    public int lives;
     private float cameraHeight;
     private float cameraWidth;
     private float positionOffset = 0.5f;
@@ -18,6 +19,7 @@ public class Frog : MonoBehaviour
     {
         initialPosition = transform.position;
         initialPosition.z = -4;
+        lives = 3;
         cameraHeight = Camera.main.orthographicSize;
         cameraWidth = Mathf.FloorToInt(Camera.main.aspect * cameraHeight);
         detector = GameObject.Find("WaterDetect").GetComponent<WaterDetect>();
@@ -76,7 +78,12 @@ public class Frog : MonoBehaviour
 
     public void Hit()
     {
-        transform.position = initialPosition;
+        lives--;
+        if (lives <= 0)
+        {
+            GameManager.Get().GameOver();
+        }
+        GoToInitialPos();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -96,4 +103,10 @@ public class Frog : MonoBehaviour
             transform.parent = null;
         }
     }
+
+    public void GoToInitialPos()
+    {
+        transform.position = initialPosition;
+    }
+
 }
