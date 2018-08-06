@@ -3,6 +3,7 @@
 public class FinalSpot : MonoBehaviour {
 
     public bool reached;
+    public int score = 250;
     private GameObject levelManager;
 
 	// Use this for initialization
@@ -17,6 +18,7 @@ public class FinalSpot : MonoBehaviour {
             reached = true;
             GetComponent<SpriteRenderer>().color = Color.red;
             levelManager.GetComponent<LevelManager>().AddSpotReached();
+            GameManager.Get().score += score;
         }
     }
 

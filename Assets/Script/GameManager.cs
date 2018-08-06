@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour {
     public GameObject frog;
     public bool gameOver;
     public int currentLevel;
+    public int score;
 
     private void Awake()
     {
@@ -26,6 +27,7 @@ public class GameManager : MonoBehaviour {
     {
         frog = GameObject.FindGameObjectWithTag("Frog");
         currentLevel = 1;
+        score = 0;
     }
 
     public static GameManager Get()
