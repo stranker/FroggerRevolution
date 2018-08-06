@@ -15,7 +15,7 @@ public class MainMenu : MonoBehaviour {
 
     public void OnPlayButton()
     {
-        SceneManager.LoadScene("Level1");
+        SceneManager.LoadScene("LoadScene");
     }
 
     public void OnCreditsButton()

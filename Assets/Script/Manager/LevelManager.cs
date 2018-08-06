@@ -8,6 +8,9 @@ public class LevelManager : MonoBehaviour {
     public int spotsCount;
     public int spotsReached;
     private float levelTime;
+    private bool spotActivated;
+    private float timer;
+    private int frogRepositionTime = 2;
 
     // Use this for initialization
     void Start () {
@@ -20,12 +23,23 @@ public class LevelManager : MonoBehaviour {
             spotsCount++;
         }
         levelTime = GameManager.Get().time;
+        spotActivated = false;
 	}
 
     private void Update()
     {
         levelTime += Time.deltaTime;
         GameManager.Get().time = (int)levelTime;
+        if (spotActivated)
+        {
+            timer += Time.deltaTime;
+            if (timer >= frogRepositionTime)
+            {
+                GameManager.Get().frog.GetComponent<Frog>().GoToInitialPos();
+                timer = 0;
+                spotActivated = false;
+            }
+        }
     }
 
     public void AddSpotReached()
@@ -37,7 +51,10 @@ public class LevelManager : MonoBehaviour {
         }
         else
         {
-            GameManager.Get().frog.GetComponent<Frog>().GoToInitialPos();
+            if (!spotActivated)
+            {
+                spotActivated = true;
+            }
         }
     }
 	

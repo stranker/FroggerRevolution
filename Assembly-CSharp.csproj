@@ -59,20 +59,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Script\CameraControl.cs" />
-    <Compile Include="Assets\Script\CreditsScene.cs" />
-    <Compile Include="Assets\Script\FinalSpot.cs" />
-    <Compile Include="Assets\Script\Frog.cs" />
-    <Compile Include="Assets\Script\GameManager.cs" />
-    <Compile Include="Assets\Script\LevelManager.cs" />
-    <Compile Include="Assets\Script\MainMenu.cs" />
-    <Compile Include="Assets\Script\ObjectSpawner.cs" />
-    <Compile Include="Assets\Script\ResultsScene.cs" />
-    <Compile Include="Assets\Script\SplashScene.cs" />
-    <Compile Include="Assets\Script\Turtles.cs" />
-    <Compile Include="Assets\Script\UIManager.cs" />
-    <Compile Include="Assets\Script\Vehicle.cs" />
-    <Compile Include="Assets\Script\WaterDetect.cs" />
+    <Compile Include="Assets\Script\Interactables\FinalSpot.cs" />
+    <Compile Include="Assets\Script\Interactables\Frog.cs" />
+    <Compile Include="Assets\Script\Interactables\ObjectSpawner.cs" />
+    <Compile Include="Assets\Script\Interactables\Turtles.cs" />
+    <Compile Include="Assets\Script\Interactables\Vehicle.cs" />
+    <Compile Include="Assets\Script\Interactables\WaterDetect.cs" />
+    <Compile Include="Assets\Script\Manager\GameManager.cs" />
+    <Compile Include="Assets\Script\Manager\LevelManager.cs" />
+    <Compile Include="Assets\Script\Manager\UIManager.cs" />
+    <Compile Include="Assets\Script\Scenes\CameraControl.cs" />
+    <Compile Include="Assets\Script\Scenes\CreditsScene.cs" />
+    <Compile Include="Assets\Script\Scenes\FakeLoad.cs" />
+    <Compile Include="Assets\Script\Scenes\MainMenu.cs" />
+    <Compile Include="Assets\Script\Scenes\ResultsScene.cs" />
+    <Compile Include="Assets\Script\Scenes\SplashScene.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Users/Daniel/Desktop/Proyectos/Godot/FroggerRevolution/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>

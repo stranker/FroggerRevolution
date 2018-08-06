@@ -31,6 +31,7 @@ public class FinalSpot : MonoBehaviour {
             GetComponent<SpriteRenderer>().color = Color.clear;
             levelManager.GetComponent<LevelManager>().AddSpotReached();
             GameManager.Get().score += score;
+            collision.transform.position = transform.position;
         }
     }
 

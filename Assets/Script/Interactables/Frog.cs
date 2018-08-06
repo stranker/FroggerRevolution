@@ -20,7 +20,6 @@ public class Frog : MonoBehaviour
     void Start()
     {
         initialPosition = transform.position;
-        initialPosition.z = -4;
         lives = 3;
         cameraHeight = Camera.main.orthographicSize;
         cameraWidth = Mathf.FloorToInt(Camera.main.aspect * cameraHeight);
@@ -55,17 +54,21 @@ public class Frog : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             movement.y += walkDistance;
+            transform.rotation = Quaternion.Euler(0, 0, 0);
         }
         else if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             movement.y -= walkDistance;
+            transform.rotation = Quaternion.Euler(0, 0, 180);
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow))
         {
+            transform.rotation = Quaternion.Euler(0, 0, 270);
             movement.x += walkDistance;
         }
         else if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
+            transform.rotation = Quaternion.Euler(0, 0, 90);
             movement.x -= walkDistance;
         }
         if (movement.x != 0 || movement.y != 0)
@@ -113,6 +116,9 @@ public class Frog : MonoBehaviour
         {
             waterPlatform = collision.gameObject;
             transform.parent = waterPlatform.transform;
+            Vector3 correctPos = transform.position;
+            correctPos.z = initialPosition.z;
+            transform.position = correctPos;
         }
         if (collision.tag == "Tilemap")
         {

@@ -28,20 +28,18 @@ public class ResultsScene : MonoBehaviour {
             menuButton.SetActive(true);
         }
         GameManager gm = GameManager.Get();
-        score.text = gm.score.ToString();
-        time.text = gm.time.ToString();
+        score.text = "SCORE " + gm.score.ToString();
+        time.text = "TIME " + gm.time.ToString();
     }
 
     public void OnContinueButton()
     {
-        string nextLevel = "Level" + GameManager.Get().currentLevel.ToString();
-        SceneManager.LoadScene(nextLevel);
+        SceneManager.LoadScene("LoadScene");
     }
 
 	public void OnMenuButton()
     {
         SceneManager.LoadScene("MainMenuScene");
-        // RESET GAME STATS
     }
 
 }
