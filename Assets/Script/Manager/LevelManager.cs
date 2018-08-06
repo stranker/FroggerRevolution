@@ -10,7 +10,7 @@ public class LevelManager : MonoBehaviour {
     private float levelTime;
     private bool spotActivated;
     private float timer;
-    private int frogRepositionTime = 2;
+    private int frogRepositionTime = 1;
 
     // Use this for initialization
     void Start () {
