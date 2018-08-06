@@ -9,22 +9,38 @@ public class ObjectSpawner : MonoBehaviour {
     public int vehicleDirection;
     public float spawnTime;
     private float timer;
+    private float startTimer;
+    private int startTime;
+    private bool spawning = false;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		if(!choosenObject && objects.Count > 0)
         {
             choosenObject = objects[UnityEngine.Random.Range(0, objects.Count)];
         }
+        SpawnVehicle();
+        startTime = UnityEngine.Random.Range(0, 3);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        timer += Time.deltaTime;
-        if (timer > spawnTime)
+        if (!spawning)
         {
-            SpawnVehicle();
-            timer = 0;
+            startTimer += Time.deltaTime;
+        }
+        else
+        {
+            timer += Time.deltaTime;
+            if (timer > spawnTime)
+            {
+                SpawnVehicle();
+                timer = 0;
+            }
+        }
+        if (startTimer >= startTime)
+        {
+            spawning = true;
         }
 	}
 

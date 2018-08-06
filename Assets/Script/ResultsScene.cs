@@ -27,6 +27,9 @@ public class ResultsScene : MonoBehaviour {
             result.text = "GAME OVER!";
             menuButton.SetActive(true);
         }
+        GameManager gm = GameManager.Get();
+        score.text = gm.score.ToString();
+        time.text = gm.time.ToString();
     }
 
     public void OnContinueButton()

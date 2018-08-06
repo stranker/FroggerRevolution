@@ -5,14 +5,16 @@ using UnityEngine;
 
 public class Frog : MonoBehaviour
 {
-    private const int walkDistance = 1;
     public int lives;
+    public GameObject waterPlatform;
+    private Vector3 initialPosition;
+    private WaterDetect detector;
+    private Vector2 lastPos;
     private float cameraHeight;
     private float cameraWidth;
     private float positionOffset = 0.5f;
-    private Vector3 initialPosition;
-    public GameObject waterPlatform;
-    private WaterDetect detector;
+    private const int walkDistance = 1;
+    private const float underwaterPos = 0;
 
     // Use this for initialization
     void Start()
@@ -23,6 +25,7 @@ public class Frog : MonoBehaviour
         cameraHeight = Camera.main.orthographicSize;
         cameraWidth = Mathf.FloorToInt(Camera.main.aspect * cameraHeight);
         detector = GameObject.Find("WaterDetect").GetComponent<WaterDetect>();
+        lastPos = transform.position;
     }
 
     private void Update()
@@ -65,12 +68,20 @@ public class Frog : MonoBehaviour
         {
             movement.x -= walkDistance;
         }
+        if (movement.x != 0 || movement.y != 0)
+        {
+            lastPos = transform.position;
+        }
         transform.position = transform.position + movement;
     }
 
     public void HitControl()
     {
-        if (detector.onWater && !detector.onPlatform)
+        if (waterPlatform && waterPlatform.transform.position.z >= underwaterPos)
+        {
+            Hit();
+        }
+        else if (detector.onWater && !detector.onPlatform)
         {
             Hit();
         }
@@ -86,14 +97,6 @@ public class Frog : MonoBehaviour
         GoToInitialPos();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.tag == "Platform")
-        {
-            waterPlatform = collision.gameObject;
-            transform.parent = waterPlatform.transform;
-        }
-    }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
@@ -101,6 +104,19 @@ public class Frog : MonoBehaviour
         {
             waterPlatform = null;
             transform.parent = null;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Platform")
+        {
+            waterPlatform = collision.gameObject;
+            transform.parent = waterPlatform.transform;
+        }
+        if (collision.tag == "Tilemap")
+        {
+            transform.position = lastPos;
         }
     }
 

@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour {
     public bool gameOver;
     public int currentLevel;
     public int score;
+    public int time;
 
     private void Awake()
     {
@@ -16,18 +17,14 @@ public class GameManager : MonoBehaviour {
         else if (instance != this)
             Destroy(gameObject);
         DontDestroyOnLoad(gameObject);
-    }
-
-    private void Start()
-    {
         Initialize();
     }
 
     private void Initialize()
     {
-        frog = GameObject.FindGameObjectWithTag("Frog");
         currentLevel = 1;
         score = 0;
+        time = 0;
     }
 
     public static GameManager Get()
